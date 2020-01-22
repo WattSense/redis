@@ -14,7 +14,7 @@
 
 release_hdr := $(shell sh -c './mkreleasehdr.sh')
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
-uname_M := $(shell sh -c 'uname -m 2>/dev/null || echo not')
+uname_M := armv7l#$(shell sh -c 'uname -m 2>/dev/null || echo not')
 OPTIMIZATION?=-O2
 DEPENDENCY_TARGETS=hiredis linenoise lua
 NODEPS:=clean distclean
@@ -35,13 +35,13 @@ INSTALL=install
 
 # Default allocator defaults to Jemalloc if it's not an ARM
 MALLOC=libc
-ifneq ($(uname_M),armv6l)
-ifneq ($(uname_M),armv7l)
-ifeq ($(uname_S),Linux)
-	MALLOC=jemalloc
-endif
-endif
-endif
+# ifneq ($(uname_M),armv6l)
+# ifneq ($(uname_M),armv7l)
+# ifeq ($(uname_S),Linux)
+# 	MALLOC=jemalloc
+# endif
+# endif
+# endif
 
 # To get ARM stack traces if Redis crashes we need a special C flag.
 ifneq (,$(filter aarch64 armv,$(uname_M)))

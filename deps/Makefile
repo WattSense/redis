@@ -19,11 +19,11 @@ default:
 	@touch $@
 
 # Clean everything when CFLAGS is different
-ifneq ($(shell sh -c '[ -f .make-cflags ] && cat .make-cflags || echo none'), $(CFLAGS))
-.make-cflags: distclean
-	-(echo "$(CFLAGS)" > .make-cflags)
-.make-prerequisites: .make-cflags
-endif
+# ifneq ($(shell sh -c '[ -f .make-cflags ] && cat .make-cflags || echo none'), $(CFLAGS))
+# .make-cflags: distclean
+# 	-(echo "$(CFLAGS)" > .make-cflags)
+# .make-prerequisites: .make-cflags
+# endif
 
 # Clean everything when LDFLAGS is different
 ifneq ($(shell sh -c '[ -f .make-ldflags ] && cat .make-ldflags || echo none'), $(LDFLAGS))
